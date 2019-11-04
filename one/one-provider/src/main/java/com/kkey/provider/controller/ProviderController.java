@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProviderController {
 
     @GetMapping("/hello/{name}")
-    public String sayHello(@PathVariable("name") String name){
+    public String sayHello(@PathVariable("name") String name) {
         return name + ", hello world! ==>> one provider";
     }
 

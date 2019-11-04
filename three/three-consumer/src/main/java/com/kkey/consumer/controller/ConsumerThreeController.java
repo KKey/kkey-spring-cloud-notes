@@ -9,8 +9,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("consumer")
 public class ConsumerThreeController {
-    private RestTemplate restTemplate;
     private static final String SERVICE_ID = "three-provider";
+    private RestTemplate restTemplate;
 
     public ConsumerThreeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;

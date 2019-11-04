@@ -15,11 +15,10 @@ import java.util.List;
 @RequestMapping("consumer")
 public class ConsumerController {
 
+    private static final String SERVICE_ID = "two-provider";
     private LoadBalancerClient loadBalancerClient;
     private RestTemplate restTemplate;
     private DiscoveryClient discoveryClient;
-
-    private static final String SERVICE_ID = "two-provider";
 
     public ConsumerController(LoadBalancerClient loadBalancerClient, RestTemplate restTemplate, DiscoveryClient discoveryClient) {
         this.loadBalancerClient = loadBalancerClient;

@@ -16,7 +16,7 @@ public class ConsumerController {
     private RestTemplate restTemplate;
 
     @GetMapping("/hello/{name}")
-    public String sayHello(@PathVariable("name") String name){
+    public String sayHello(@PathVariable("name") String name) {
         String url = "http://localhost:6666/hello/" + name;
         String result = restTemplate.getForObject(url, String.class);
         return result + "  ==>> one consumer";

@@ -13,7 +13,7 @@ public class ConsumerApplication {
     }
 
     @Bean
-    public RestTemplate genRestTemplate(){
+    public RestTemplate genRestTemplate() {
         return new RestTemplate();
     }
 }
