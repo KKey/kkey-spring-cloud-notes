@@ -18,3 +18,7 @@ management:
   endpoint:
     health:
       show-details: always
+
+three-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
