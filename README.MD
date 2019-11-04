@@ -37,8 +37,14 @@ management:
 ### four：集成feign
 
 ### 集成hystrix
-    容错：熔断、降级
-    监控：dashboard、turbine
+* 开关配置
+```
+feign:
+  hystrix:
+    enabled: true
+```
+* 容错：熔断、降级
+* 监控：dashboard、turbine
 
 ### 集成zuul
     添加验证过滤器：登陆认证、日志、异常处理

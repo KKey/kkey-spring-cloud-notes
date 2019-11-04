@@ -8,6 +8,7 @@
         <module>two</module>
         <module>three</module>
         <module>four</module>
+        <module>five</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
