@@ -6,6 +6,7 @@
     <modules>
         <module>one</module>
         <module>two</module>
+        <module>three</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,24 @@
+server:
+  port: 6666
+
+spring:
+  application:
+    name: three-provider
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5555/eureka/
+  instance:
+    prefer-ip-address: true
+

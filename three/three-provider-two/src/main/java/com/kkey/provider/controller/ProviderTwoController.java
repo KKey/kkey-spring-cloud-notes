@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ProviderController {
+public class ProviderTwoController {
 
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable("name") String name){
-        return name + ", hello world! ==>> one provider";
+        return name + ", hello world! ==>> three provider two";
     }
 
 }

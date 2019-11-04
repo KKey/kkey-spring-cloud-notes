@@ -1,0 +1,11 @@
+server:
+  port: 5555
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:5555/eureka/
+  instance:
+    namespace: three-discovery
