@@ -42,7 +42,7 @@ RoundRobinRule
 WeightedResponseTimeRule
 ZoneAvoidanceRule
 ```
-![b2f9085ce9008193112cd3635f51d580.png](en-resource://database/1806:1)
+![b2f9085ce9008193112cd3635f51d580.png](en-resource://database/2932:1)
 
 * 配置负载均衡策略
 ```
@@ -51,7 +51,7 @@ three-provider:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ```
-
+    
 * 代码配置负载均衡策略
 使用@RibbonClient注解，指定service的负载均衡策略
 // name是服务提供者名，configuration是配置的负载均衡策略类
@@ -81,13 +81,40 @@ public class ConsumerApplication {
 ```
 
 ### four：集成feign
-    feign配置
-    自定义配置
-    http://c.biancheng.net/view/5362.html
+* feign配置，例如要使用feign的注解，而不用SpringMVC的注解；
+    模块：four-consumer-feign
+    
+1. 定义本地Configuration，自定义名称，例如：FeignLocalConfig.java，
+      注入要修改的配置，例如Contract，和Logger.Level
+2. 在FeignClient添加configuration配置，例如：
+  @FeignClient(value = ProviderFeignService.SERVICE_ID,        configuration = FeignLocalConfig.class)
+3. 将SpringMVC的注解换成Feign的注解；
+  `@GetMapping("/hello/{name}")==>>@RequestLine("GET /hello/{name}")
+  @PathVariable("name") String name==>>@Param("name") String name`
 
+* 自定义配置
+1. 自定义拦截器；实现RequestInterceptor则可，然后再configuration中注入bean。
+    例如代码中的com.kkey.consumer.feign.interceptor.FeignLocalInterceptor
+
+* 用烹制文件配置指定，而非编写代码方式
+```
+#处理使用代码编码方式修改基本配置，还可以通过配置文件方式
+feign:
+  client:
+    config:
+      four-provider: # service name
+        connectTimeout: 5000 
+        readTimeout: 5000
+        loggerLevel: FULL
+        requestInterceptors[0]:  interceptor类路径
+        encoder: encoder类路径
+        decoder: decoder类路径
+        contract: 类路径
+```
+    
 
 ### five：集成hystrix
-* 开关配置
+* 开关配置，将feign集成的hystrix开关打开
 ```
 feign:
   hystrix:
