@@ -1,0 +1,43 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: four-consumer
+  main:
+    allow-bean-definition-overriding: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5555/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+#处理使用代码编码方式修改基本配置，还可以通过配置文件方式
+#feign:
+#  client:
+#    config:
+#      four-provider: # service name
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLevel: FULL
+#        requestInterceptors[0]: com.kkey.consumer.feign.interceptor.FeignLocalInterceptor
+#        encoder: encoder类路径
+#        decoder: decoder类路径
+#        contract: 类路径
+
+
+
+
+
+
+

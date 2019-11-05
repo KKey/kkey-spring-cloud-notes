@@ -1,6 +1,6 @@
-package com.kkey.consumer.controller;
+package com.kkey.consumer.feign.controller;
 
-import com.kkey.consumer.interfaces.ProviderService;
+import com.kkey.consumer.feign.interfaces.ProviderFeignService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +13,13 @@ import javax.annotation.Resource;
 public class ConsumerFourController {
 
     @Resource
-    private ProviderService providerService;
+    private ProviderFeignService providerFeignService;
 
     /**
-     * NOTE four：借助feign
+     * NOTE four：借助feign的注解
      */
     @GetMapping("/hello/{name}")
-    public String sayHelloRibbon(@PathVariable("name") String name) {
-        return providerService.providerSayHello(name) + "  ==>> four consumer";
+    public String sayHelloRibbonFeign(@PathVariable("name") String name) {
+        return providerFeignService.providerSayHelloFeign(name) + "  ==>> five consumer";
     }
 }

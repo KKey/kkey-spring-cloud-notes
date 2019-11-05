@@ -15,6 +15,7 @@
         <module>four-provider-one</module>
         <module>four-provider-two</module>
         <module>four-consumer</module>
+        <module>four-consumer-feign</module>
         <module>four-discovery</module>
     </modules>
 </project>
