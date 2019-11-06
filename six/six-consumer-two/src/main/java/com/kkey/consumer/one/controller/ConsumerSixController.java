@@ -1,6 +1,6 @@
-package com.kkey.consumer.controller;
+package com.kkey.consumer.one.controller;
 
-import com.kkey.consumer.interfaces.ProviderService;
+import com.kkey.consumer.one.interfaces.ProviderService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("consumer")
-public class ConsumersixController {
+public class ConsumerSixController {
 
     @Resource
     private ProviderService providerService;
@@ -22,7 +22,7 @@ public class ConsumersixController {
     @GetMapping("/hello/{name}")
     @HystrixCommand
     public String sayHelloRibbon(@PathVariable("name") String name) {
-        return providerService.providerSayHello(name) + "  ==>> six consumer";
+        return providerService.providerSayHello(name) + "  ==>> six consumer two";
     }
 
 }

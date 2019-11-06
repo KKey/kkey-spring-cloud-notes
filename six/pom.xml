@@ -14,7 +14,8 @@
     <modules>
         <module>six-provider-one</module>
         <module>six-provider-two</module>
-        <module>six-consumer</module>
+        <module>six-consumer-one</module>
+        <module>six-consumer-two</module>
         <module>six-discovery</module>
         <module>six-zuul</module>
     </modules>

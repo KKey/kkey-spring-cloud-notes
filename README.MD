@@ -120,14 +120,61 @@ feign:
   hystrix:
     enabled: true
 ```
-* 容错：熔断、降级
-* 线程隔离和信号量隔离
-* 监控：dashboard、turbine
+* 容错：熔断、降级 TODO 
+* 线程隔离和信号量隔离 TODO 
+* 监控：dashboard
+  1. 确保有actuactor和dashBoard两个依赖;
+  2. 启动一下注解：
+    @EnableDiscoveryClient
+    @EnableHystrix
+    @EnableHystrixDashboard
+  3. 访问http://localhost:7777/hystrix，可以看到dashBoard界面；
+  4. 开放actuactor访问端点；
+```
+management:
+   endpoints:
+    web:
+      exposure:
+        include: health,info,hystrix.stream
+```
+   5. 此时访问端点，/actuator/hystrix.stream只有ping为空显示；
+   6. 添加接口采集点注解；@HystrixCommand
+   7. 再次访问端点/actuator/hystrix.stream，此时不仅有空ping，还有data；
+   8. 在dashBoard界面，添加url，例如：`http://localhost:7777/actuator/hystrix.stream`，并设置数据同步周期后，点击Monitor Stream后可以看到图形界面；
+
+
+* 监控：turbine
 
 ### six：集成zuul
-    添加验证过滤器：登陆认证、日志、异常处理
-    灰度、版本
-    管理端点
+* 集成和路由：
+    1. 单独新起一个模块：six-zuul用作网关转发，添加zuul和eureka依赖
+    2. 添加配置：
+    ```
+    server:
+      port: 8888
+
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://localhost:5555/eureka/
+    spring:
+      application:
+        name: zuul-gateway
+    zuul:
+      routes:
+        six:
+          path: /six/**
+          serviceId: six-consumer
+    ```
+        转发规则：
+        源监听端口8888，如果http://localhost:8888/后面带的/six/的uri则进行转发给six-consumer服务，因为依赖了eureka，所以服务信息从eureka取。
+        例如http://localhost:8888/six/consumer/hello/kkey
+        直接转：http://localhost:7777/consumer/hello/kkey
+
+    ***
+
+* 添加验证过滤器：登陆认证、日志、异常处理
+    pre/route/post/error：直接集成ZuulFilter添加相应逻辑则可；
 
 ### seven：集成config
     eureka动态扩容

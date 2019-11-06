@@ -1,4 +1,4 @@
-package com.kkey.consumer.interfaces;
+package com.kkey.consumer.one.interfaces;
 
 import org.springframework.stereotype.Component;
 

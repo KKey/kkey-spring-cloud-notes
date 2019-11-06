@@ -1,4 +1,4 @@
-//package com.kkey.consumer.controller;
+//package com.kkey.consumer.one.controller;
 //
 //import org.springframework.cloud.client.ServiceInstance;
 //import org.springframework.cloud.client.discovery.DiscoveryClient;
